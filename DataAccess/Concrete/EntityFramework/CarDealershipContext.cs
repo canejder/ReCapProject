@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server = jdbc:sqlserver://DESKTOP-FCS8EI3\SQLEXPRESS;Database=CarDealership;Trusted_Connection=true"
+                @"Data Source=DESKTOP-FCS8EI3\SQLEXPRESS;Initial Catalog=CarDealership;Trusted_Connection = true"
                 );
         }
 
