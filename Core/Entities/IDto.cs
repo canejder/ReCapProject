@@ -1,6 +1,6 @@
 ﻿namespace Entities.Abstract
 {
-    public interface IEntity
+    public interface IDto
     {
         
     }

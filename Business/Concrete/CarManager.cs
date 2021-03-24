@@ -3,6 +3,7 @@ using Business.Abstract;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -15,6 +16,11 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        public void Add(Car entity)
+        {
+            _carDal.Add(entity);
+        }
+
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
@@ -23,6 +29,11 @@ namespace Business.Concrete
         public List<Car> GetAllById(int id)
         {
             return _carDal.GetAll(c => c.Id == id);
+        }
+
+        public List<Car> GetAllByName(string name)
+        {
+            return _carDal.GetAll(c => c.Name == name);
         }
 
         public List<Car> GetAllByBrandId(int id)
@@ -38,6 +49,21 @@ namespace Business.Concrete
         public List<Car> GetAllByModelYear(string modelYear)
         {
             return _carDal.GetAll(c => c.ModelYear == modelYear);
+        }
+
+        public List<CarDetailDTO> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
+        }
+
+        public void Update(Car entity)
+        {
+            _carDal.Update(entity);
+        }
+
+        public void Delete(Car entity)
+        {
+            _carDal.Delete(entity);
         }
     }
 }
