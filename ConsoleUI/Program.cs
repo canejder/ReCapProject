@@ -17,19 +17,19 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EfColorDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             
-            // BrandAddTest(ref brandManager);
+            BrandAddTest(ref brandManager);
             // BrandUpdateTest(ref brandManager);
             // BrandtDeleteTest(ref brandManager);
             BrandtGetTest(ref brandManager);
             
-            // ColorAddTest(ref colorManager);
+            ColorAddTest(ref colorManager);
             // ColorUpdateTest(ref colorManager);
             // ColorDeleteTest(ref colorManager);
             ColorGetTest(ref colorManager);
 
             CarAddTest(ref carManager);
-            CarUpdateTest(ref carManager);
-            CarDeleteTest(ref carManager);
+            //CarUpdateTest(ref carManager);
+            //CarDeleteTest(ref carManager);
             CarDetailsTest(ref carManager);
 
         }
@@ -38,25 +38,24 @@ namespace ConsoleUI
 
         private static void CarAddTest(ref CarManager carManager)
         {
-            // carManager.Add(new Car
-            // {
-            //     CarId = 1,
-            //     CarName = "Passat",
-            //     ModelYear = new DateTime(1996,1,1),
-            //     Description = "Sedan Aile Arabası",
-            //     DailyPrice = 200,
-            //     BrandId = 1,
-            //     ColorId = 1
-            // });
             Console.WriteLine(
             carManager.Add(new Car
             {
-                CarId = 2,
+                CarName = "Passat",
+                ModelYear = new DateTime(1996,1,1),
+                Description = "Sedan Aile Arabası",
+                DailyPrice = 200,
+                BrandId = 1,
+                ColorId = 1
+            }).Message);
+            Console.WriteLine(
+            carManager.Add(new Car
+            {
                 CarName = "Clio",
                 ModelYear = new DateTime(2004,1,1),
-                Description = "Hatchback spor araba",
-                DailyPrice = 200,
-                BrandId = 2,
+                Description = "Hatchback 3 Kapı",
+                DailyPrice = 120,
+                BrandId = 6,
                 ColorId = 2,
             }).Message);
         }
@@ -110,15 +109,13 @@ namespace ConsoleUI
 
         private static void ColorAddTest(ref ColorManager colorManager)
         {
-            // colorManager.Add(new Color
-            // {
-            //     ColorId = 1,
-            //     ColorName = "Mavi"
-            // });
             colorManager.Add(new Color
             {
-                ColorId = 2,
-                ColorName = "Siyah"
+                ColorName = "Green"
+            });
+            colorManager.Add(new Color
+            {
+                ColorName = "Yellow"
             });
         }
 
@@ -136,13 +133,13 @@ namespace ConsoleUI
 
         private static void BrandtDeleteTest(ref BrandManager brandManager)
         {
-            var entity = brandManager.GetAllByName("Volkswagen").Data.SingleOrDefault();
+            var entity = brandManager.GetAllByName("Reno")?.Data.SingleOrDefault();
             brandManager.Delete(entity);
         }
 
         private static void BrandUpdateTest(ref BrandManager brandManager)
         {
-            var entity = brandManager.GetAllByName("Skoda").Data.SingleOrDefault();
+            var entity = brandManager.GetAllByName("Skoda")?.Data.SingleOrDefault();
             entity.BrandName = "Volkswagen";
             brandManager.Update(entity);
         }
@@ -151,13 +148,11 @@ namespace ConsoleUI
         {
             brandManager.Add(new Brand
             {
-                BrandId = 1,
-                BrandName = "Opel"
+                BrandName = "Renault"
             });
             brandManager.Add(new Brand
             {
-                BrandId = 2,
-                BrandName = "Volkswagen"
+               BrandName = "Opel"
             });
         }
 

@@ -26,6 +26,28 @@
             public static string Deleted = "Marka silindi.";
             public static string Listed = "Marka listelendi.";
         }
+        public struct User
+        {
+            public static string Added = "Kullanıcı eklendi.";
+            public static string Updated = "Kullanıcı güncellendi.";
+            public static string Deleted = "Kullanıcı silindi.";
+            public static string Listed = "Kullanıcı listelendi.";
+        }
+        public struct Customer
+        {
+            public static string Added = "Müşteri eklendi.";
+            public static string Updated = "Müşteri güncellendi.";
+            public static string Deleted = "Müşteri silindi.";
+            public static string Listed = "Müşteri listelendi.";
+        }
+        public struct Rental
+        {
+            public static string Added = "Kiralama kaydı eklendi.";
+            public static string Updated = "Kiralama kaydı güncellendi.";
+            public static string Deleted = "Kiralama kaydı silindi.";
+            public static string Listed = "Kiralama kaydı listelendi.";
+            public static string NotReturned = "Kiraladığnız aracı teslim etmeden yeni araç kiralayamazsınız.";
+        }
         
         
         
