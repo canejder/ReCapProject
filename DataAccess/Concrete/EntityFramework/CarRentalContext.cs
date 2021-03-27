@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class CarDealershipContext : DbContext
+    public class CarRentalContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Data Source=DESKTOP-FCS8EI3\SQLEXPRESS;Initial Catalog=CarDealership;Trusted_Connection = true"
+                @"Server=DESKTOP-FCS8EI3\SQLEXPRESS;Database=CarRental;Trusted_Connection=true"
                 );
         }
 

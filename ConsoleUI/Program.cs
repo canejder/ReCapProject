@@ -20,59 +20,63 @@ namespace ConsoleUI
             // BrandAddTest(ref brandManager);
             // BrandUpdateTest(ref brandManager);
             // BrandtDeleteTest(ref brandManager);
-            // BrandtGetTest(ref brandManager);
-            //
+            BrandtGetTest(ref brandManager);
+            
             // ColorAddTest(ref colorManager);
             // ColorUpdateTest(ref colorManager);
             // ColorDeleteTest(ref colorManager);
-            // ColorGetTest(ref colorManager);
+            ColorGetTest(ref colorManager);
 
-            // CarAddTest(ref carManager);
-            // CarUpdateTest(ref carManager);
-            // CarDeleteTest(ref carManager);
-            // CarDetailsTest(ref carManager);
+            CarAddTest(ref carManager);
+            CarUpdateTest(ref carManager);
+            CarDeleteTest(ref carManager);
+            CarDetailsTest(ref carManager);
+
         }
 
         #region Car Test
 
         private static void CarAddTest(ref CarManager carManager)
         {
+            // carManager.Add(new Car
+            // {
+            //     CarId = 1,
+            //     CarName = "Passat",
+            //     ModelYear = new DateTime(1996,1,1),
+            //     Description = "Sedan Aile Arabası",
+            //     DailyPrice = 200,
+            //     BrandId = 1,
+            //     ColorId = 1
+            // });
+            Console.WriteLine(
             carManager.Add(new Car
             {
-                Name = "Passat",
-                BrandId = 1,
-                ColorId = 1,
+                CarId = 2,
+                CarName = "Clio",
+                ModelYear = new DateTime(2004,1,1),
+                Description = "Hatchback spor araba",
                 DailyPrice = 200,
-                Description = "Sedan Aile Arabası",
-                ModelYear = "1996"
-            });carManager.Add(new Car
-            {
-                Name = "Clio",
                 BrandId = 2,
                 ColorId = 2,
-                DailyPrice = 200,
-                Description = "Hatchback spor araba",
-                ModelYear = "2004"
-            });
+            }).Message);
         }
 
         private static void CarUpdateTest(ref CarManager carManager)
         {
-            var entity = carManager.GetAll().Find(c => c.Id == 1);
-            entity.BrandId = 2;
-            entity.Name = "Corsa";
+            var entity = carManager.GetAllById(2).Data.SingleOrDefault();
+            entity.BrandId = 1;
             carManager.Update(entity);
         }
 
         private static void CarDeleteTest(ref CarManager carManager)
         {
-            var entity = carManager.GetAll().Find(c => c.Id == 2);
+            var entity = carManager.GetAllById(2).Data.SingleOrDefault();//TODO: Single entites should not return a list
             carManager.Delete(entity);
         }
 
         private static void CarDetailsTest(ref CarManager carManager)
         {
-            foreach (var car in carManager.GetCarDetails())
+            foreach (var car in carManager.GetCarDetails().Data)
             {
                 Console.WriteLine(car.CarName + " - " + car.BrandName + " - " + car.ColorName + " - " + car.DailyPrice);
             }
@@ -84,30 +88,37 @@ namespace ConsoleUI
 
         private static void ColorGetTest(ref ColorManager colorManager)
         {
-            foreach (var color in colorManager.GetAllById(1))
+            
+            foreach (var color in colorManager.GetAllById(1).Data)
             {
-                Console.WriteLine(color.Name);
+                Console.WriteLine(color.ColorName);
             }
         }
 
         private static void ColorDeleteTest(ref ColorManager colorManager)
         {
-            var entity = colorManager.GetAllByName("Mavi").SingleOrDefault();
-            colorManager.Delete(entity);
+            var entity = colorManager.GetAllByName("Mavi");
+            colorManager.Delete(entity.Data.SingleOrDefault());
         }
 
         private static void ColorUpdateTest(ref ColorManager colorManager)
         {
-            var entity = colorManager.GetAllByName("Mavi").SingleOrDefault();
-            entity.Name = "Blue";
-            colorManager.Update(entity);
+            var entity = colorManager.GetAllByName("Mavi");
+            entity.Data.SingleOrDefault().ColorName = "Blue";
+            colorManager.Update(entity.Data.SingleOrDefault());
         }
 
         private static void ColorAddTest(ref ColorManager colorManager)
         {
+            // colorManager.Add(new Color
+            // {
+            //     ColorId = 1,
+            //     ColorName = "Mavi"
+            // });
             colorManager.Add(new Color
             {
-                Name = "Mavi"
+                ColorId = 2,
+                ColorName = "Siyah"
             });
         }
 
@@ -117,22 +128,22 @@ namespace ConsoleUI
 
         private static void BrandtGetTest(ref BrandManager brandManager)
         {
-            foreach (var color in brandManager.GetAllByName("Volkswagen"))
+            foreach (var brand in brandManager.GetAllByName("Volkswagen").Data)
             {
-                Console.WriteLine(color.Name);
+                Console.WriteLine(brand.BrandName);
             }
         }
 
         private static void BrandtDeleteTest(ref BrandManager brandManager)
         {
-            var entity = brandManager.GetAllByName("Volkswagen").SingleOrDefault();
+            var entity = brandManager.GetAllByName("Volkswagen").Data.SingleOrDefault();
             brandManager.Delete(entity);
         }
 
         private static void BrandUpdateTest(ref BrandManager brandManager)
         {
-            var entity = brandManager.GetAllByName("Skoda").SingleOrDefault();
-            entity.Name = "Volkswagen";
+            var entity = brandManager.GetAllByName("Skoda").Data.SingleOrDefault();
+            entity.BrandName = "Volkswagen";
             brandManager.Update(entity);
         }
 
@@ -140,11 +151,13 @@ namespace ConsoleUI
         {
             brandManager.Add(new Brand
             {
-                Name = "Opel"
+                BrandId = 1,
+                BrandName = "Opel"
             });
             brandManager.Add(new Brand
             {
-                Name = "Volkswagen"
+                BrandId = 2,
+                BrandName = "Volkswagen"
             });
         }
 
