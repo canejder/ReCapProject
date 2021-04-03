@@ -10,7 +10,7 @@ namespace Business.Abstract
         IResult Add(Color entity);
         //R
         IDataResult<List<Color>> GetAll();
-        IDataResult<List<Color>> GetAllById(int id);
+        IDataResult<List<Color>> GetById(int id);
         IDataResult<List<Color>> GetAllByName(string name);
         //U
         IResult Update(Color entity);

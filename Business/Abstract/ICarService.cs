@@ -13,7 +13,7 @@ namespace Business.Abstract
         IResult Add(Car entity);
         //R
         IDataResult<List<Car>> GetAll();
-        IDataResult<List<Car>> GetAllById(int id);
+        IDataResult<List<Car>> GetById(int id);
         IDataResult<List<Car>> GetAllByName(string name);
         IDataResult<List<Car>> GetAllByBrandId(int id);
         IDataResult<List<Car>> GetAllByColorId(int id);

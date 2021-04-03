@@ -10,7 +10,7 @@ namespace Business.Abstract
         IResult Add(Brand entity);
         //R
         IDataResult<List<Brand>> GetAll();
-        IDataResult<List<Brand>> GetAllById(int id);
+        IDataResult<List<Brand>> GetById(int id);
         IDataResult<List<Brand>> GetAllByName(string name);
         //U
         IResult Update(Brand entity);

@@ -62,14 +62,14 @@ namespace ConsoleUI
 
         private static void CarUpdateTest(ref CarManager carManager)
         {
-            var entity = carManager.GetAllById(2).Data.SingleOrDefault();
+            var entity = carManager.GetById(2).Data.SingleOrDefault();
             entity.BrandId = 1;
             carManager.Update(entity);
         }
 
         private static void CarDeleteTest(ref CarManager carManager)
         {
-            var entity = carManager.GetAllById(2).Data.SingleOrDefault();//TODO: Single entites should not return a list
+            var entity = carManager.GetById(2).Data.SingleOrDefault();//TODO: Single entites should not return a list
             carManager.Delete(entity);
         }
 
@@ -88,7 +88,7 @@ namespace ConsoleUI
         private static void ColorGetTest(ref ColorManager colorManager)
         {
             
-            foreach (var color in colorManager.GetAllById(1).Data)
+            foreach (var color in colorManager.GetById(1).Data)
             {
                 Console.WriteLine(color.ColorName);
             }

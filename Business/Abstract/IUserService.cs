@@ -11,7 +11,7 @@ namespace Business.Abstract
         IResult Delete(User user);
 
         IDataResult<List<User>> GetAll();
-        IDataResult<List<User>> GetAllById(int id);
+        IDataResult<List<User>> GetById(int id);
         IDataResult<List<User>> GetAllByFirstName(string first);
         IDataResult<List<User>> GetAllByLastName(string last);
         IDataResult<List<User>> GetAllByEmail(string email);
