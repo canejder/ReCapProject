@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using Business.Abstract;
 using Business.Constants;
+using Business.DependencyResolvers.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Business.Concrete
 {
@@ -20,6 +23,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car entity)
         {
             if (entity.CarName.Length < 2)

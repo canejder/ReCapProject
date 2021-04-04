@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Business.Abstract;
+using Business.DependencyResolvers.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -16,6 +19,7 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Brand entity)
         {
             _brandDal.Add(entity);
@@ -52,4 +56,6 @@ namespace Business.Concrete
 
         }
     }
+
+    
 }
